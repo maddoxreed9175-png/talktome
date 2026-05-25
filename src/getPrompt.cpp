@@ -16,7 +16,7 @@ int main() {
   std::string lastLine;
 
   while (std::getline(file, line)) {
-    if (line != "" && line != "[BLANK_AUDIO]"){
+    if (line != "" && line != " [BLANK_AUDIO]"){
       lastLine = line;
     }
   }
