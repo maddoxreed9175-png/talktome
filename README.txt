@@ -7,7 +7,7 @@ cd into the repository:
 cd talktome
 
 run setup.sh:
-(NOTE: This will install cmake and the newest version of Ollama. It will also clone the whisper.cpp repository)
+(NOTE: This will install several different things. I recommend using your favorite text editor to read setup.sh before you run it.)
 ./setup.sh
 
 Be sure to 
