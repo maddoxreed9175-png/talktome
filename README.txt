@@ -1,2 +1,7 @@
-sudo apt-get install libsdl2-dev
+Setup:
 
+run setup.sh:
+./setup.sh
+
+run talktome.sh:
+./talktome.sh
