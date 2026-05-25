@@ -1,29 +1,29 @@
 #!/bin/bash
 
 while true; do
-  #read -rsn1 key
-  #if [[ "$key" == "q" || "$key" == "Q" ]]; then
-  #  echo -e "\nScript stopped by user."
-  #  exit 0
-  #fi
   
   touch prompt.txt
-  printf "Ask question..."
-  spd-say -w "Ask question"
+  printf "Listening..."
+  spd-say -w "Listening"
 
   #Calling whisper
-  ./whisper.cpp/bin/whisper-stream -m ./whisper.cpp/models/ggml-tiny.en.bin -t 8 --step 0 --length 5000 -f prompt.txt 2>/dev/null &
+  ./whisper.cpp/bin/whisper-stream -m ./whisper.cpp/models/ggml-tiny.en.bin -t 8 --step 0 --length 5000 -vth 0.6 -f prompt.txt 2>/dev/null &
   PID=$!
 
   #getting the last line from prompt.txt
   while true; do
+    grep -a -oP ']   \K.*' prompt.txt | tail -1
     grepOut=$(grep -a -oP ']   \K.*' prompt.txt | tail -1)
 
     [[ -n "$grepOut" ]] && break
 
   done
 
-  kill -9 $PID
+  kill -9 $PID > /dev/null 2>&1
+
+  if [[ "$grepOut" == "Stop." ]] || [[ "$grepOut" == "Quit." ]]; then
+    break
+  fi
 
   printf '%s\n' "$grepOut" > finalPrompt.txt
   unset grepOut
@@ -47,4 +47,6 @@ while true; do
 
 done
 
+printf "Goodbye."
+spd-say -w "Goodbye."
 ./cleanup.sh
