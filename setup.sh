@@ -9,6 +9,6 @@ git clone https://github.com/ggml-org/whisper.cpp.git
 cd whisper.cpp
 sh ./models/download-ggml-model.sh tiny.en
 sudo apt install libsdl2-dev
-cmake -B build -DWHISPER_SDL2=ON
-cmake --build build -j --config Release
+cmake -DWHISPER_SDL2=ON .
+make whisper-stream
 cd ..

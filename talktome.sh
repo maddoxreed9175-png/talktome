@@ -1,5 +1,5 @@
 #!/bin/bash
-timeout 5 ./whisper.cpp/build/bin/whisper-stream -m ./whisper.cpp/models/ggml-tiny.en.bin -t 8 --step 500 --length 5000 -f prompt.txt 2>/dev/null
+timeout 5 ./whisper.cpp/bin/whisper-stream -m ./whisper.cpp/models/ggml-tiny.en.bin -t 8 --step 500 --length 5000 -f prompt.txt 2>/dev/null
 spd-say -w "Please wait"
 ./src/getPrompt.out
 curl http://localhost:11434/api/generate -d '{
